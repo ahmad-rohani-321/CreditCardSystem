@@ -21,7 +21,6 @@ namespace CreditCardSystem.Controllers
                 return [.. _context
                     .Ledger
                     .Include(x => x.Party)
-                    .Include(x => x.Percentage)
                     .Where(x => x.PartyId == partyId && (x.CreationDate >= startDate || x.CreationDate <= endDate))];
             }
             catch 

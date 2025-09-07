@@ -22,5 +22,17 @@ namespace CreditCardSystem.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.03")]
+        public decimal Percent {
+            get {
+                return ((decimal)(this["Percent"]));
+            }
+            set {
+                this["Percent"] = value;
+            }
+        }
     }
 }

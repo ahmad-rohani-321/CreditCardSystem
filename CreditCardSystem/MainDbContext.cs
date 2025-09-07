@@ -22,12 +22,8 @@ namespace CreditCardSystem
         );
             base.OnConfiguring(optionsBuilder);
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        
         public DbSet<Party> Parties { get; set; }
-        public DbSet<Percentage> Percentages { get; set; }
         public DbSet<Ledger> Ledger { get; set; }
     }
 }

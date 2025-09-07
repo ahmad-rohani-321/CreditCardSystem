@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,6 +24,7 @@ namespace CreditCardSystem.Views
             _numbers.Columns.Add("number", typeof(string));
             gridNumbers.DataSource = _numbers;
             txtType.Properties.Items.AddRange(Defaults.DefaultPartyTypes);
+            txtType.SelectedIndex = 0;
         }
         #endregion
 
@@ -164,7 +166,7 @@ namespace CreditCardSystem.Views
         {
             txtName.Text = string.Empty;
             txtName.ErrorText = string.Empty;
-            txtType.SelectedIndex = -1;
+            txtType.SelectedIndex = 0;
             txtType.ErrorText = string.Empty;
             txtFirstBalance.Value = 0;
             txtFirstBalance.ErrorText = string.Empty;
@@ -182,5 +184,16 @@ namespace CreditCardSystem.Views
         }
         #endregion
 
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            
+            Reports.Parties party = new Reports.Parties();
+            party.DataSource = _parties.GetParties();
+            party.CreateDocument();
+            ReportPrintTool printTool = new ReportPrintTool(party);
+            printTool.ShowPreviewDialog();
+            
+        }
     }
 }

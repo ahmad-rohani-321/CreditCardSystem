@@ -78,8 +78,8 @@ namespace CreditCardSystem.Views
                     break;
                 case 2:
                     // do exchange
-                    txtFromAccount.Properties.DataSource = _parties.GetParties(Defaults.DefaultPartyTypes[2]);
-                    txtToAccount.Properties.DataSource = _parties.GetParties(Defaults.DefaultPartyTypes[2]);
+                    txtFromAccount.Properties.DataSource = _parties.GetParties(Defaults.DefaultPartyTypes[2], Defaults.DefaultPartyTypes[1]);
+                    txtToAccount.Properties.DataSource = _parties.GetParties(Defaults.DefaultPartyTypes[2], Defaults.DefaultPartyTypes[1]);
                     break;
                 case 3:
                     // do receive
@@ -101,21 +101,22 @@ namespace CreditCardSystem.Views
         }
         private void txtFrom_EditValueChanged(object sender, EventArgs e)
         {
-            ClearForm();
             _fromParty = (Model.Party)txtFromAccount.EditValue;
             if (_fromParty != null)
             {
                 _fromBalance = _transactions.GetLastBalance(_fromParty.Id);
-                txtPhoneNumbers.Properties.Items.AddRange(_fromParty.PhoneNumbers);
                 lblFromBalance.Text = $"بلانس {_fromBalance}";
             }
         }
         private void txtSystem_EditValueChanged(object sender, EventArgs e)
         {
+            txtPhoneNumbers.Properties.Items.Clear();
+            txtPhoneNumbers.Clear();
             _toParty = (Model.Party)txtToAccount.EditValue;
             if (_toParty != null)
             {
                 _toBalance = _transactions.GetLastBalance(_toParty.Id);
+                txtPhoneNumbers.Properties.Items.AddRange(_toParty.PhoneNumbers);
                 lblToBalance.Text = $"بلانس {_toBalance}";
             }
         }
@@ -217,6 +218,21 @@ namespace CreditCardSystem.Views
             {
                 txtFromAccount.ErrorText = string.Empty;
                 txtToAccount.ErrorText = string.Empty;
+            }
+
+            if (txtFromAccount.EditValue != null && txtToAccount.EditValue != null)
+            {
+                var from = (Model.Party)txtFromAccount.EditValue;
+                var to = (Model.Party)txtToAccount.EditValue;
+                if (from.PartyType == to.PartyType)
+                {
+                    txtFromAccount.ErrorText = "د یو ډول حسابونو ترمنځ تبدله نه کیږي";
+                    isValid = false;
+                }
+                else
+                {
+                    txtFromAccount.ErrorText = string.Empty;
+                }
             }
 
             if (txtValue.Value <= 0)

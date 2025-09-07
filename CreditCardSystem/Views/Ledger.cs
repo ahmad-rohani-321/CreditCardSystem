@@ -42,7 +42,7 @@ namespace CreditCardSystem.Views
 
         private void Ledger_Load(object sender, EventArgs e)
         {
-            txtAccount.Properties.DataSource  = _parties.GetActiveParties();
+            txtAccount.Properties.DataSource = _parties.GetActiveParties();
             txtEndDate.DateTime = DateTime.Now;
             txtStartDate.DateTime = DateTime.Now.AddDays(-10);
         }
@@ -113,5 +113,13 @@ namespace CreditCardSystem.Views
         #endregion
 
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Reports.Ledger report = new();
+            report.DataSource = gridLedger.DataSource;
+            report.CreateDocument();
+            ReportPrintTool printTool = new(report);
+            printTool.ShowPreviewDialog();
+        }
     }
 }

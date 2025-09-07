@@ -14,7 +14,7 @@ namespace CreditCardSystem.Model
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
         public decimal Balance { get; set; }
-
+        public decimal Percentage { get; set; }
         // Foreign Keys
 
         public int PartyId { get; set; }
@@ -22,10 +22,6 @@ namespace CreditCardSystem.Model
         [ForeignKey(nameof(PartyId))]
         public Party Party { get; set; }
 
-        public int PercentageId { get; set; }
-
-        [ForeignKey(nameof(PercentageId))]
-        public Percentage Percentage { get; set; }
 
     }
 }

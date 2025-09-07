@@ -1,4 +1,5 @@
 ﻿using CreditCardSystem.Model;
+using CreditCardSystem.Properties;
 using DevExpress.Charts.Native;
 using System;
 using System.Collections.Generic;
@@ -69,10 +70,10 @@ namespace CreditCardSystem.Controllers
                     {
                         Model.Ledger ledger = new()
                         {
-                            PartyId = party.Id,
+                            PartyId = addedParty.Entity.Id,
                             TransactionType = Defaults.DefaultTransactionTypes[3],
                             Remarks = "",
-                            PercentageId = 1,
+                            Percentage = Settings.Default.Percent,
                             CreationDate = DateTime.Now,
                             Debit = firstBalance,
                             Balance = firstBalance
@@ -84,18 +85,18 @@ namespace CreditCardSystem.Controllers
                     {
                         Model.Ledger ledger = new()
                         {
-                            PartyId = party.Id,
+                            PartyId = addedParty.Entity.Id,
                             TransactionType = Defaults.DefaultTransactionTypes[3],
                             Remarks = "",
-                            PercentageId = 1,
+                            Percentage = Settings.Default.Percent,
                             CreationDate = DateTime.Now,
                             Credit = firstBalance,
-                            Balance = 0 - firstBalance
+                            Balance = firstBalance, 
                         };
 
                         _context.Add(ledger);
                     }
-                        _context.SaveChanges();
+                    _context.SaveChanges();
                     transaction.Commit();
                     return true;
                 }
@@ -116,6 +117,7 @@ namespace CreditCardSystem.Controllers
                     existingParty.Name = party.Name;
                     existingParty.PartyType = party.PartyType;
                     existingParty.Remarks = party.Remarks;
+                    existingParty.PhoneNumbers = party.PhoneNumbers;
                     _context.SaveChanges();
                 }
                 return true;

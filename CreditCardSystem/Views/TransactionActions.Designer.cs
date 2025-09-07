@@ -184,7 +184,8 @@
             // 
             // labelControl7
             // 
-            labelControl7.Location = new System.Drawing.Point(855, 132);
+            labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            labelControl7.Location = new System.Drawing.Point(855, 173);
             labelControl7.Name = "labelControl7";
             labelControl7.Size = new System.Drawing.Size(84, 19);
             labelControl7.TabIndex = 13;
@@ -192,7 +193,8 @@
             // 
             // txtPhoneNumbers
             // 
-            txtPhoneNumbers.Location = new System.Drawing.Point(531, 125);
+            txtPhoneNumbers.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            txtPhoneNumbers.Location = new System.Drawing.Point(531, 166);
             txtPhoneNumbers.Name = "txtPhoneNumbers";
             txtPhoneNumbers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             txtPhoneNumbers.Size = new System.Drawing.Size(318, 34);
@@ -226,7 +228,7 @@
             // labelControl2
             // 
             labelControl2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            labelControl2.Location = new System.Drawing.Point(855, 171);
+            labelControl2.Location = new System.Drawing.Point(855, 132);
             labelControl2.Name = "labelControl2";
             labelControl2.Size = new System.Drawing.Size(53, 19);
             labelControl2.TabIndex = 4;
@@ -307,7 +309,7 @@
             // txtToAccount
             // 
             txtToAccount.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            txtToAccount.Location = new System.Drawing.Point(531, 165);
+            txtToAccount.Location = new System.Drawing.Point(531, 126);
             txtToAccount.Name = "txtToAccount";
             txtToAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             txtToAccount.Properties.DisplayMember = "Name";
@@ -338,7 +340,7 @@
             gridColumn6.FieldName = "PartyType";
             gridColumn6.Name = "gridColumn6";
             gridColumn6.Visible = true;
-            gridColumn6.VisibleIndex = 2;
+            gridColumn6.VisibleIndex = 1;
             // 
             // txtCashType
             // 

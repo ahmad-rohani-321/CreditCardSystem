@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CreditCardSystem.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250824064024_Changed2024_8_24")]
-    partial class Changed2024_8_24
+    [Migration("20250904062134_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,8 +41,8 @@ namespace CreditCardSystem.Migrations
                     b.Property<int>("PartyId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PercentageId")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Percentage")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
@@ -56,8 +56,6 @@ namespace CreditCardSystem.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PartyId");
-
-                    b.HasIndex("PercentageId");
 
                     b.ToTable("Ledger");
                 });
@@ -97,26 +95,6 @@ namespace CreditCardSystem.Migrations
                     b.ToTable("Parties");
                 });
 
-            modelBuilder.Entity("CreditCardSystem.Model.Percentage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Percentages");
-                });
-
             modelBuilder.Entity("CreditCardSystem.Model.Ledger", b =>
                 {
                     b.HasOne("CreditCardSystem.Model.Party", "Party")
@@ -125,15 +103,7 @@ namespace CreditCardSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CreditCardSystem.Model.Percentage", "Percentage")
-                        .WithMany()
-                        .HasForeignKey("PercentageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Party");
-
-                    b.Navigation("Percentage");
                 });
 #pragma warning restore 612, 618
         }

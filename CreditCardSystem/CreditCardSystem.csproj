@@ -43,6 +43,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Update="Views\Reports\Ledger.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
     <Compile Update="Views\SalesReport.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -39,6 +39,7 @@
             gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             txtStartDate = new DevExpress.XtraEditors.DateEdit();
             txtEndDate = new DevExpress.XtraEditors.DateEdit();
             btnSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -55,7 +56,8 @@
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridLedger).BeginInit();
@@ -74,10 +76,12 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             SuspendLayout();
             // 
             // layoutControl1
             // 
+            layoutControl1.Controls.Add(btnPrint);
             layoutControl1.Controls.Add(gridLedger);
             layoutControl1.Controls.Add(txtStartDate);
             layoutControl1.Controls.Add(txtEndDate);
@@ -89,7 +93,7 @@
             layoutControl1.Name = "layoutControl1";
             layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
             layoutControl1.Root = Root;
-            layoutControl1.Size = new System.Drawing.Size(1245, 659);
+            layoutControl1.Size = new System.Drawing.Size(1245, 657);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
@@ -98,7 +102,7 @@
             gridLedger.Location = new System.Drawing.Point(16, 16);
             gridLedger.MainView = gridView1;
             gridLedger.Name = "gridLedger";
-            gridLedger.Size = new System.Drawing.Size(867, 627);
+            gridLedger.Size = new System.Drawing.Size(867, 625);
             gridLedger.TabIndex = 2;
             gridLedger.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
@@ -172,6 +176,14 @@
             gridColumn9.Visible = true;
             gridColumn9.VisibleIndex = 7;
             // 
+            // gridColumn4
+            // 
+            gridColumn4.Caption = "موبایل شمېره";
+            gridColumn4.FieldName = "PhoneNumber";
+            gridColumn4.Name = "gridColumn4";
+            gridColumn4.Visible = true;
+            gridColumn4.VisibleIndex = 1;
+            // 
             // txtStartDate
             // 
             txtStartDate.EditValue = null;
@@ -196,9 +208,9 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new System.Drawing.Point(1070, 136);
+            btnSearch.Location = new System.Drawing.Point(1069, 136);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new System.Drawing.Size(159, 28);
+            btnSearch.Size = new System.Drawing.Size(160, 28);
             btnSearch.StyleController = layoutControl1;
             btnSearch.TabIndex = 6;
             btnSearch.Text = "پلټنه";
@@ -208,7 +220,7 @@
             // 
             btnClear.Location = new System.Drawing.Point(905, 136);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(159, 28);
+            btnClear.Size = new System.Drawing.Size(158, 28);
             btnClear.StyleController = layoutControl1;
             btnClear.TabIndex = 7;
             btnClear.Text = "پاک";
@@ -249,15 +261,15 @@
             gridColumn14.FieldName = "PartyType";
             gridColumn14.Name = "gridColumn14";
             gridColumn14.Visible = true;
-            gridColumn14.VisibleIndex = 2;
+            gridColumn14.VisibleIndex = 1;
             // 
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, splitterItem1, layoutControlItem3, layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem7 });
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, splitterItem1, layoutControlItem3, layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem7, layoutControlItem2 });
             Root.Name = "Root";
-            Root.Size = new System.Drawing.Size(1245, 659);
+            Root.Size = new System.Drawing.Size(1245, 657);
             Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -265,14 +277,14 @@
             layoutControlItem1.Control = gridLedger;
             layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new System.Drawing.Size(873, 633);
+            layoutControlItem1.Size = new System.Drawing.Size(873, 631);
             layoutControlItem1.TextVisible = false;
             // 
             // splitterItem1
             // 
             splitterItem1.Location = new System.Drawing.Point(873, 0);
             splitterItem1.Name = "splitterItem1";
-            splitterItem1.Size = new System.Drawing.Size(16, 633);
+            splitterItem1.Size = new System.Drawing.Size(16, 631);
             // 
             // layoutControlItem3
             // 
@@ -304,9 +316,9 @@
             // layoutControlItem6
             // 
             layoutControlItem6.Control = btnSearch;
-            layoutControlItem6.Location = new System.Drawing.Point(1054, 120);
+            layoutControlItem6.Location = new System.Drawing.Point(1053, 120);
             layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new System.Drawing.Size(165, 513);
+            layoutControlItem6.Size = new System.Drawing.Size(166, 34);
             layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
@@ -314,24 +326,35 @@
             layoutControlItem7.Control = btnClear;
             layoutControlItem7.Location = new System.Drawing.Point(889, 120);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new System.Drawing.Size(165, 513);
+            layoutControlItem7.Size = new System.Drawing.Size(164, 34);
             layoutControlItem7.TextVisible = false;
             // 
-            // gridColumn4
+            // btnPrint
             // 
-            gridColumn4.Caption = "موبایل شمېره";
-            gridColumn4.FieldName = "PhoneNumber";
-            gridColumn4.Name = "gridColumn4";
-            gridColumn4.Visible = true;
-            gridColumn4.VisibleIndex = 1;
+            btnPrint.Location = new System.Drawing.Point(905, 170);
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new System.Drawing.Size(324, 28);
+            btnPrint.StyleController = layoutControl1;
+            btnPrint.TabIndex = 8;
+            btnPrint.Text = "چاپ";
+            btnPrint.Click += btnPrint_Click;
+            // 
+            // layoutControlItem2
+            // 
+            layoutControlItem2.Control = btnPrint;
+            layoutControlItem2.Location = new System.Drawing.Point(889, 154);
+            layoutControlItem2.Name = "layoutControlItem2";
+            layoutControlItem2.Size = new System.Drawing.Size(330, 477);
+            layoutControlItem2.TextVisible = false;
             // 
             // Ledger
             // 
             Appearance.Options.UseFont = true;
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             AutoScroll = true;
-            ClientSize = new System.Drawing.Size(1245, 659);
+            ClientSize = new System.Drawing.Size(1245, 657);
             Controls.Add(layoutControl1);
+            Font = new System.Drawing.Font("Calibri", 12F);
             Margin = new System.Windows.Forms.Padding(4);
             Name = "Ledger";
             RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -356,6 +379,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ResumeLayout(false);
         }
 
@@ -389,5 +413,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

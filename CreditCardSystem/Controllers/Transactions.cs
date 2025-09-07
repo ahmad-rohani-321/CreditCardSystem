@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreditCardSystem.Properties;
+using System;
 using System.Linq;
 
 namespace CreditCardSystem.Controllers
@@ -18,28 +19,27 @@ namespace CreditCardSystem.Controllers
                 {
                     decimal fromLastBalance = GetLastBalance(fromId);
                     decimal toLastBalance = GetLastBalance(toId);
-                    int percentageId = _context.Percentages.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
                     // first entry 
                     Model.Ledger firstEntry = new Model.Ledger()
                     {
                         CreationDate = date,
-                        PercentageId = percentageId,
                         TransactionType = Defaults.DefaultTransactionTypes[transactionType],
                         Remarks = remarks,
                         PartyId = fromId,
-                        PhoneNumber = phoneNumber
+                        PhoneNumber = phoneNumber,
+                        Percentage  = Settings.Default.Percent
                     };
 
                     // Second Entry
                     Model.Ledger secondEntry = new Model.Ledger()
                     {
                         CreationDate = date,
-                        PercentageId = percentageId,
                         TransactionType = Defaults.DefaultTransactionTypes[transactionType],
                         Remarks = remarks,
                         PartyId = toId,
-                        PhoneNumber = phoneNumber
+                        PhoneNumber = phoneNumber,
+                        Percentage = Settings.Default.Percent
                     };
 
                     // manage debit and credit
@@ -116,8 +116,7 @@ namespace CreditCardSystem.Controllers
             try
             {
                 int countOfParties = _context.Parties.Count(x => x.IsActive);
-                int countOfPercent = _context.Percentages.Count();
-                return countOfParties > 0 && countOfPercent > 0;
+                return countOfParties > 0;
             }
             catch
             {
