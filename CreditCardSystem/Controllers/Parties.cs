@@ -58,7 +58,7 @@ namespace CreditCardSystem.Controllers
                 return new();
             }
         }
-        public bool AddParty(Party party, decimal firstBalance)
+        public bool AddParty(Party party)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -66,7 +66,7 @@ namespace CreditCardSystem.Controllers
                 {
                     var addedParty = _context.Add(party);
                     _context.SaveChanges();
-                    if (firstBalance > 0)
+                    if (addedParty.Entity.Balance > 0)
                     {
                         Model.Ledger ledger = new()
                         {
@@ -75,13 +75,13 @@ namespace CreditCardSystem.Controllers
                             Remarks = "",
                             Percentage = Settings.Default.Percent,
                             CreationDate = DateTime.Now,
-                            Debit = firstBalance,
-                            Balance = firstBalance
+                            Credit = addedParty.Entity.Balance,
+                            Balance = addedParty.Entity.Balance
                         };
 
                         _context.Add(ledger);
                     }
-                    else
+                    else if(addedParty.Entity.Balance <  0)
                     {
                         Model.Ledger ledger = new()
                         {
@@ -90,8 +90,8 @@ namespace CreditCardSystem.Controllers
                             Remarks = "",
                             Percentage = Settings.Default.Percent,
                             CreationDate = DateTime.Now,
-                            Credit = firstBalance,
-                            Balance = firstBalance, 
+                            Debit = addedParty.Entity.Balance,
+                            Balance = addedParty.Entity.Balance, 
                         };
 
                         _context.Add(ledger);

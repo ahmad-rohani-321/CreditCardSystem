@@ -15,15 +15,29 @@ namespace CreditCardSystem.Views
 {
     public partial class SalesReport : XtraForm
     {
+        #region fields
         private readonly Controllers.Ledger _ledger;
         private readonly Controllers.Parties _parties;
+        #endregion
+
+        #region constructor
         public SalesReport()
         {
             InitializeComponent();
             _ledger = new();
             _parties = new();
         }
-        #region Visual studio generated code
+        #endregion
+
+        #region events
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Reports.SalesReport salesReport = new();
+            salesReport.DataSource = gridLedger.DataSource;
+            salesReport.CreateDocument();
+            ReportPrintTool printTool = new(salesReport);
+            printTool.ShowPreviewDialog();
+        }
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -113,14 +127,5 @@ namespace CreditCardSystem.Views
         }
         #endregion
 
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            Reports.SalesReport salesReport = new();
-            salesReport.DataSource = gridLedger.DataSource;
-            salesReport.CreateDocument();
-            ReportPrintTool printTool = new(salesReport);
-            printTool.ShowPreviewDialog();
-        }
     }
 }

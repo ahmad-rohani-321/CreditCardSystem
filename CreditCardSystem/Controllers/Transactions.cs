@@ -108,21 +108,6 @@ namespace CreditCardSystem.Controllers
                 return 0M;
             }
         }
-        /// <summary>
-        /// Allows user to add transactions after checking parties and percentages
-        /// </summary>
-        public bool IsAllowed()
-        {
-            try
-            {
-                int countOfParties = _context.Parties.Count(x => x.IsActive);
-                return countOfParties > 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
         public void Dispose()
         {
             _context.Dispose();

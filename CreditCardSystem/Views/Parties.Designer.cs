@@ -170,7 +170,6 @@
             txtName.Size = new System.Drawing.Size(268, 20);
             txtName.StyleController = layoutControl1;
             txtName.TabIndex = 0;
-            txtName.EditValueChanged += textEdit1_EditValueChanged;
             // 
             // girdPeople
             // 

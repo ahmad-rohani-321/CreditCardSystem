@@ -15,15 +15,29 @@ namespace CreditCardSystem.Views
 {
     public partial class Ledger : DevExpress.XtraEditors.XtraForm
     {
+        #region fields
         private readonly Controllers.Ledger _ledger;
         private readonly Controllers.Parties _parties;
+        #endregion
+
+        #region constructor
         public Ledger()
         {
             InitializeComponent();
             _ledger = new();
             _parties = new();
         }
-        #region Visual studio generated code
+        #endregion
+
+        #region events
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Reports.Ledger report = new();
+            report.DataSource = gridLedger.DataSource;
+            report.CreateDocument();
+            ReportPrintTool printTool = new(report);
+            printTool.ShowPreviewDialog();
+        }
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -112,14 +126,5 @@ namespace CreditCardSystem.Views
         }
         #endregion
 
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            Reports.Ledger report = new();
-            report.DataSource = gridLedger.DataSource;
-            report.CreateDocument();
-            ReportPrintTool printTool = new(report);
-            printTool.ShowPreviewDialog();
-        }
     }
 }
