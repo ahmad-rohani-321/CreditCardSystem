@@ -213,12 +213,13 @@ namespace CreditCardSystem.Views
             {
                 var from = (Model.Party)txtFromAccount.EditValue;
                 var to = (Model.Party)txtToAccount.EditValue;
-                if (from.PartyType == to.PartyType)
-                {
-                    txtFromAccount.ErrorText = "د یو ډول حسابونو ترمنځ تبدله نه کیږي";
-                    isValid = false;
-                }
-                else if (from.Id == from.Id)
+                //if (from.PartyType == to.PartyType)
+                //{
+                //    txtFromAccount.ErrorText = "د یو ډول حسابونو ترمنځ تبدله نه کیږي";
+                //    isValid = false;
+                //}
+                //else
+                if (from.Id == to.Id)
                 {
                     txtFromAccount.ErrorText = "لطفاً او سیسټم دواړه یو شخص مه انتخابوئ";
                     isValid = false;
